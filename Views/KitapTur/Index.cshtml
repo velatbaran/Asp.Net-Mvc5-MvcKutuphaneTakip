@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MvcKutuphane.Models.Model.KitapTuru>
+@{
+    ViewBag.Title = "Kitap Tür";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a href="/KitapTur/KitapTurEkle" class="btn btn-primary" style="margin-top:25px;margin-bottom:25px">Yeni Kitap Türü Ekle</a>
+
+<table class="table table-bordered table-striped table-responsive table-hover table-advance" id="myTable" style="margin-top:40px">
+    <thead>
+        <tr>
+            <th>Kitap Türü</th>
+            <th>Kaydeden</th>
+            <th>Kayit Tarihi</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.TurAd</td>
+            <td>@item.Kullanici.Ad&nbsp @item.Kullanici.Soyad</td>
+            <td>@item.KayitTarihi</td>
+            <td>
+
+                <a class="btn btn-success" style="background-color:#97d431" href="/KitapTur/KitapTurGuncelle/@item.KitapTurId">Güncelle</a>
+            </td>
+            <td>
+                @Html.ActionLink("Sil", "KitapTurSil", new { id = item.KitapTurId }, new
+       {
+           @class = "btn btn-warning",
+           onclick = "return confirm('Gerçekten silmek istiyor musunuz?')"
+       })
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-html5-1.5.6/fh-3.1.4/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            }
+        );
+    });
+</script>
+

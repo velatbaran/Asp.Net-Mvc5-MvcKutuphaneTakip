@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcKutuphane.Models.Model.Islem>
+@{
+    ViewBag.Title = "Arsiv";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered table-striped table-advance table-hover table-responsive" id="myTable" style="margin-top:15px">
+    <thead>
+        <tr>
+            <th>Kitap NO</th>
+            <th>Kitap Adı</th>
+            <th>Üye NO</th>
+            <th>Üye TC</th>
+            <th>Üye Adı</th>
+            <th>Açıklama</th>
+            <th>Veriliş Tarihi</th>
+            <th>İade Tarihi</th>
+            <th>Üyenin Getirdiği Tarih</th>
+            <th>Geç Gelen Gün Sayısı</th>
+            <th>Kaydeden</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Kitaplar.KitapId</td>
+            <td>@item.Kitaplar.Ad</td>
+            <td>@item.Uye.UyeId</td>
+            <td>@item.Uye.TC</td>
+            <td>@item.Uye.Ad&nbsp @item.Uye.Soyad</td>
+            <td>@item.Aciklama</td>
+            <td>@item.VerilisTarihi.ToShortDateString()</td>
+            <td>@item.IadeTarihi.ToShortDateString()</td>
+            <td>@item.UyeGetirTarihi.ToShortDateString()</td>
+            <td>@item.GecGelenGunSayisi</td>
+            <td>@item.Kullanici.Ad&nbsp @item.Kullanici.Soyad</td>
+       </tr>
+        }
+    </tbody>
+</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-html5-1.5.6/fh-3.1.4/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            }
+        );
+    });
+</script>
+
+

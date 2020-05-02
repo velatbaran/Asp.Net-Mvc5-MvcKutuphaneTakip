@@ -1,0 +1,35 @@
+﻿@model MvcKutuphane.Models.Model.Kullanici
+@{
+    ViewBag.Title = "KullaniciEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:40px;">Kullanıcı Ekleme Sayfası</h2>
+
+@using (Html.BeginForm("KullaniciEkle", "Kullanici", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-group" style="margin-top:40px">
+    <label>Ad</label>
+    <input type="text" name="Ad" required class="form-control" placeholder="Ad giriniz.." />
+    <br />
+    <label>Soyad</label>
+    <input type="text" name="Soyad" required class="form-control" placeholder="Soyad giriniz.." />
+    <br />
+    <label>Email</label>
+    <input type="email" name="Email" required class="form-control" placeholder="Email giriniz.." />
+    <br />
+    <label>Şifre</label>
+    <input type="password" name="Sifre" required class="form-control" placeholder="Şifre giriniz.." />
+    <br />
+    <label>Yetki</label>
+    @Html.DropDownList("YetkiId", null,"Yetki seçiniz...", new { @class = "form-control" })
+    <br />
+    <label>Resim</label>
+    <input type="file" name="ResimURL" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a class="btn btn-danger" href="/Kullanici/Index">İptal</a>
+</div>
+}

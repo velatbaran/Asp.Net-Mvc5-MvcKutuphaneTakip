@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcKutuphane.Models.Model.Islem>
+@{
+    Layout = null;
+}
+
+<div class="col-md-6 stats-info stats-last widget-shadow">
+    <div class="stats-last-agile">
+        <strong style="color:#981e69">İadesi Yaklaşan Kitaplardan Bazıları</strong>
+        <div align="right"><a href="/Odunc/IadesiYaklasanTumKitaplar" class="btn btn-default">Hepsini Gör</a></div>
+        <table class="table stats-table ">
+            <thead>
+                <tr>
+                    <th>KitapNo</th>
+                    <th>Kitap Adı</th>
+                    <th>ÜyeNo</th>
+                    <th>Veriliş Tarihi</th>
+                    <th>İade Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int say = 1;
+                    foreach (var item in Model)
+                    {                        
+                        DateTime d1 = DateTime.Parse(item.IadeTarihi.ToString());
+                        DateTime d2 = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                        TimeSpan d3 = d1 - d2;
+                        //int date = DateTime.Compare(item.IadeTarihi, Convert.ToDateTime(DateTime.Now.ToShortDateString()));
+                        if (d3.TotalDays >= 0 && d3.TotalDays <= 3 && say <= 10)
+                        {
+                            say = say + 1;
+                            <tr>
+                                <th scope="row" style="font-size:15px">@item.Kitaplar.KitapId</th>
+                                <td style="font-size:15px">@item.Kitaplar.Ad</td>
+                                <td style="font-size:15px">@item.Uye.UyeId</td>
+                                <td style="font-size:15px"><span class="label label-info">@item.VerilisTarihi.ToShortDateString()</span></td>
+                                <td style="font-size:15px"><span class="label label-warning">@item.IadeTarihi.ToShortDateString()<i class="fa fa-level-up"></i></span></td>
+                            </tr>
+                        }
+
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

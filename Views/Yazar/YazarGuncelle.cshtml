@@ -1,0 +1,22 @@
+﻿@model MvcKutuphane.Models.Model.Yazar
+@{
+    ViewBag.Title = "YazarGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("YazarGuncelle", "Yazar", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group" style="margin-top:70px">
+        <label>Yazar Adı</label>
+        <input type="text" name="AdSoyad" value="@Model.AdSoyad" required="" class="form-control">
+        <br />
+        <label>KullanıcıID</label>
+        <input type="text" name="KullaniciId" value="@Session["kullaniciId"]" readonly class="form-control">
+        <div class="clearfix"></div>
+        <br />
+        <button type="submit" class="btn btn-success">Güncelle</button>
+        <a class="btn btn-danger" href="/Yazar/Index">İptal</a>
+    </div>
+}
+

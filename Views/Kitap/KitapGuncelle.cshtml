@@ -1,0 +1,39 @@
+﻿@model MvcKutuphane.Models.Model.Kitaplar
+@{
+    ViewBag.Title = "KitapGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("KitapGuncelle", "Kitap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group" style="margin-top:70px">
+        <label>Kitap Adı</label>
+        <input type="text" name="Ad" value="@Model.Ad" required="" class="form-control">
+        <br />
+        <label>Kitap Türü</label>
+        @Html.DropDownList("KitapTurId", null, "Kitap türünü seçiniz...", new { @class = "form-control" })
+        <br />
+        <label>Yazar</label>
+        @Html.DropDownList("YazarId", null, "Yazarı seçiniz...", new { @class = "form-control" })
+        <br />
+        <label>Sayfa Sayısı</label>
+        <input type="text" name="Sayfa" class="form-control" value="@Model.Sayfa" required>
+        <br />
+        <label>Basım Yılı</label>
+        <input type="text" name="BasimYili" value="@Model.BasimYili" required="" class="form-control">
+        <br />
+        <label>Yayınevi</label>
+        <input type="text" name="Yayınevi" value="@Model.Yayınevi" required="" class="form-control">
+        <br />
+        <label>KullanıcıID</label>
+        <input type="text" name="KullaniciId" value="@Session["kullaniciId"]" readonly hidden class="form-control">
+        <br />
+        <input type="hidden" name="KitapDurum" value="True" />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-warning">Güncelle</button>
+        <a class="btn btn-danger" href="/Kitap/Index">İptal</a>
+    </div>
+}
+

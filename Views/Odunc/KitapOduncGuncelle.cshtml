@@ -1,0 +1,37 @@
+﻿@model MvcKutuphane.Models.Model.Islem
+@{
+    ViewBag.Title = "KitapOduncGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("KitapOduncGuncelle", "Odunc", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group" style="margin-top:20px">
+        <label>Üye NO</label>
+        <input type="number" name="UyeId" class="form-control" required value="@Model.UyeId">
+        <strong class="alert">@ViewBag.Uyari1</strong>
+        <br />
+        <label>Kitap NO</label>
+        <input type="number" name="KitapId" required value="@Model.KitapId" class="form-control">
+        <strong class="alert">@ViewBag.Uyari2</strong>
+        <strong class="alert">@ViewBag.Uyari3</strong>
+        <br />
+        <label>Açıklama</label>
+        <textarea name="Aciklama" required class="form-control" rows="4">@Model.Aciklama</textarea>
+        <br />
+        <label>KullanıcıID</label>
+        <input type="text" name="KullaniciId" value="@Session["kullaniciId"]" readonly hidden class="form-control">
+        <br />
+        <label>Veriliş Tarihi</label>
+        <input type="text" name="VerilisTarihi" class="form-control" readonly hidden value="@DateTime.Now.ToShortDateString()" />
+        <br />
+        <label>Getirme Tarihi</label>
+        <input type="text" name="IadeTarihi" class="form-control" readonly hidden value="@DateTime.Now.AddDays(15).ToShortDateString()" />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-default">Güncelle</button>
+        <a class="btn btn-danger" href="/Odunc/Index">İptal</a>
+    </div>
+}
+

@@ -1,0 +1,32 @@
+﻿@model MvcKutuphane.Models.Model.Kimlik
+@{
+    ViewBag.Title = "Kimlik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered table-striped table-advance table-hover table-responsive" style="margin-top:20px">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Anahtar Kelimeler</th>
+            <th>Açıklama</th>
+            <th>Resim</th>
+            <th>Unvan</th>
+            <th>Kaydeden</th>
+            <th>Kayit Tarihi</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Title</td>
+            <td>@Model.Keywords</td>
+            <td>@Model.Description</td>
+            <td><img src="@Model.ResimURL"  class="img-responsive" /></td>
+            <td>@Model.Unvan</td>
+            <td>@Model.Kullanici.Ad&nbsp @Model.Kullanici.Soyad</td>
+            <td>@Model.KayitTarihi</td>
+            <td><a href="/Kimlik/KimlikGuncelle/@Model.KimlikId" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    </tbody>
+</table>

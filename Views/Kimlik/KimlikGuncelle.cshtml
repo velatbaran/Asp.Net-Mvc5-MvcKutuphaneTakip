@@ -1,0 +1,37 @@
+﻿@model MvcKutuphane.Models.Model.Kimlik
+@{
+    ViewBag.Title = "KimlikGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("KimlikGuncelle","Kimlik",FormMethod.Post,new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group" style="margin-top:20px">
+        <label>Başlık</label>
+        <input type="text" name="Title" required value="@Model.Title" class="form-control"/>
+        <br />
+        <label>Anahtar Kelimeler</label>
+        <input type="text" name="Keywords" required min="20" value="@Model.Keywords" class="form-control"/>
+        <br />
+        <label>Açıklama</label>
+        <input type="text" name="Description" required min="5" value="@Model.Description" class="form-control"/>
+        <br />
+        <label>Eski Resim</label>
+        <img src="@Model.ResimURL" width="250" height="250" class="img-responsive" />
+        <br />
+        <label>Resim</label>
+        <input type="file" name="ResimURL" value="@Model.ResimURL" accept=".png,.jpg,.jpeg" class="form-control"/>
+        <br />
+        <label>Unvan</label>
+        <input type="text" name="Unvan" required min="5" value="@Model.Unvan" class="form-control"/>
+        <br />
+        <label>KullaniciID</label>
+        <input type="text" name="KullaniciId" readonly value="@Session["kullaniciId"]" class="form-control"/>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-success">Güncelle</button>
+        <a class="btn btn-danger" href="/Kimlik/Index">İptal</a>
+    </div>
+}
+

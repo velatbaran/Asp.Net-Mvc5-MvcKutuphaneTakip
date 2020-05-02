@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MvcKutuphane.Models.Model.Islem>
+@{
+    Layout = null;
+}
+
+<div class="col-md-6 stats-info stats-last widget-shadow">
+    <div class="stats-last-agile">
+        <strong style="color:#981e69">En İlgi Gören Kitaplar</strong>
+        @*<div align="right"><a href="/Odunc/IadesiYaklasanTumKitaplar" class="btn btn-default">Hepsini Gör</a></div>*@
+        <table class="table stats-table ">
+            <thead>
+                <tr>
+                    <th>KitapNo</th>
+                    <th>Kitap Adı</th>
+                    <th>Yazar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    //int say = 1;
+                    foreach (var item in Model)
+                    {
+                        //if (say <= 10)
+                        //{
+                        //say = say + 1;
+                        <tr>
+                            <th scope="row" style="font-size:15px">@item.Kitaplar.KitapId</th>
+                            <td style="font-size:15px">@item.Kitaplar.Ad</td>
+                            @*<td style="font-size:15px">@item.Kitaplar.Yazar.AdSoyad</td>*@
+                        </tr>
+                        //}
+
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

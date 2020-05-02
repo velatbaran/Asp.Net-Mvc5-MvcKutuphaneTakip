@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcKutuphane.Models.Model.Kitaplar>
+@{
+    ViewBag.Title = "Kitaplar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="/Kitap/KitapEkle" class="btn btn-default" style="background-color:#e99595;color:antiquewhite;margin-bottom:15px">Yeni Kitap Ekle</a>
+</p>
+
+<table class="table table-bordered table-striped table-advance table-hover table-responsive" id="myTable" style="margin-top:15px">
+    <thead>
+        <tr>
+            <th>Kitap No</th>
+            <th>Kitap Adı</th>
+            <th>Kitap Türü</th>
+            <th>Yazar</th>
+            <th>Sayfa Sayısı</th>
+            <th>Basım Yılı</th>
+            <th>Yayınevi</th>
+            <th>Kaydeden</th>
+            <th>Kayıt Tarihi</th>
+            <th>Kitap Durumu</th>
+            @*<td>Ödünç Verme</td>*@
+            <td>İşlemler</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.KitapId</td>
+            <td>@item.Ad</td>
+            <td>@item.KitapTuru.TurAd</td>
+            <td>@item.Yazar.AdSoyad</td>
+            <td>@item.Sayfa</td>
+            <td>@item.BasimYili</td>
+            <td>@item.Yayınevi</td>
+            <td>@item.Kullanici.Ad&nbsp @item.Kullanici.Soyad</td>
+            <td>@item.KayitTarihi</td>
+            <td>@item.KitapDurum</td>
+            @*<td><a href="/Kitap/KitapOduncVer/@item.KitapId" class="btn btn-default">Kitap Ödünç Ver</a></td>*@
+            <td>
+                <a class="btn btn-success" style="background-color:#97d431" href="/Kitap/KitapGuncelle/@item.KitapId">Güncelle</a>
+                @Html.ActionLink("Sil", "KitapSil", new { id = item.KitapId }, new
+       {
+           @class = "btn btn-warning",
+           onclick = "return confirm('Gerçekten silmek istiyor musunuz?')"
+       })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-html5-1.5.6/fh-3.1.4/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            }
+        );
+    });
+</script>

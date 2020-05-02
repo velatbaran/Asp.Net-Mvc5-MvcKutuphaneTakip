@@ -1,0 +1,42 @@
+﻿@model MvcKutuphane.Models.Model.Islem
+@{
+    ViewBag.Title = "KitapIadeEt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("KitapIadeEt", "Odunc", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group" style="margin-top:20px">
+        <label>Üye NO</label>
+        <input type="number" name="UyeId" class="form-control" required readonly value="@Model.UyeId">
+        <br />
+        <label>Kitap NO</label>
+        <input type="number" name="KitapId" required readonly value="@Model.KitapId" class="form-control">
+        <br />
+        <label>Açıklama</label>
+        <textarea name="Aciklama" required readonly class="form-control" rows="4">@Model.Aciklama</textarea>
+        <br />
+        <label>KullanıcıID</label>
+        <input type="text" name="KullaniciId" value="@Session["kullaniciId"]" readonly hidden class="form-control">
+        <br />
+        <label>Veriliş Tarihi</label>
+        <input type="text" name="VerilisTarihi" class="form-control" readonly hidden value="@Model.VerilisTarihi.ToShortDateString()" />
+        <br />
+        <label>İade Tarihi</label>
+        <input type="text" name="IadeTarihi" class="form-control" readonly hidden value="@Model.IadeTarihi.ToShortDateString()" />
+        <br />
+        <label>Üyenin Getirdiği Tarih</label>
+        <input type="text" name="UyeGetirTarihi" class="form-control" readonly hidden value="@Convert.ToDateTime(DateTime.Now.ToLongTimeString())" />
+        <br />
+        <label>Geç Gelen Gün Sayısı</label>
+        <input type="text" name="GecGelenGunSayisi" class="form-control" readonly hidden value="@ViewBag.deger" />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-warning">Kitabı İade Et</button>
+        <a class="btn btn-danger" href="/Odunc/Index">İptal</a>
+    </div>
+}
+        </div>
+    </div>
+</div>

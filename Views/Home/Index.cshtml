@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="market-updates">
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-book"> </i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Toplam Kitap Sayısı</h4>
+                <h3>@ViewBag.ToplamKitapSayisi</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Toplam Üye Sayısı</h4>
+                <h3>@ViewBag.ToplamUyeSayisi</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-3">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-turkish-lira"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Toplam Kasa Tutar</h4>
+                <h3>@ViewBag.ToplamKasaTutar</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Ödünç Verilen Kitap Sayısı</h4>
+                <h3>@ViewBag.ToplamOduncKitapSayisi</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //market-->
+<!-- //tasks -->
+<div class="agileits-w3layouts-stats">
+    @{
+        Html.RenderAction("IadesiYaklasanKitaplar", "Odunc");
+    }
+    @{
+        Html.RenderAction("IadesiGecikenKitaplar", "Odunc");
+    }
+    @*@{
+        Html.RenderAction("EnIlgiGorenKitaplar", "Odunc");
+    }*@
+    <div class="clearfix"> </div>
+</div>
+
+
+
